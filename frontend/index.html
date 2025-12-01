@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Smart Task Analyzer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <h1>Smart Task Analyzer</h1>
+
+      <div class="layout">
+        <!-- Input Section -->
+        <section class="panel">
+          <h2>Input Tasks</h2>
+
+          <form id="task-form">
+            <div class="field-row">
+              <label>Title</label>
+              <input type="text" id="title" required />
+            </div>
+
+            <div class="field-row">
+              <label>Due Date</label>
+              <input type="date" id="due_date" />
+            </div>
+
+            <div class="field-row">
+              <label>Estimated Hours</label>
+              <input type="number" id="estimated_hours" min="0" step="0.5" />
+            </div>
+
+            <div class="field-row">
+              <label>Importance (1–10)</label>
+              <input
+                type="number"
+                id="importance"
+                min="1"
+                max="10"
+                value="5"
+                required
+              />
+            </div>
+
+            <div class="field-row">
+              <label>Dependencies (IDs, comma-separated)</label>
+              <input type="text" id="dependencies" placeholder="e.g. 1,2" />
+            </div>
+
+            <button type="submit">Add Task</button>
+          </form>
+
+          <h3>Or paste JSON array</h3>
+          <textarea
+            id="bulk-json"
+            rows="6"
+            placeholder='[ { "id": 1, "title": "Task A", ... } ]'
+          ></textarea>
+        </section>
+
+        <!-- Options + Analyze -->
+        <section class="panel">
+          <h2>Options</h2>
+
+          <div class="field-row">
+            <label>Strategy</label>
+            <select id="strategy">
+              <option value="smart_balance">Smart Balance</option>
+              <option value="fastest_wins">Fastest Wins</option>
+              <option value="high_impact">High Impact</option>
+              <option value="deadline_driven">Deadline Driven</option>
+            </select>
+          </div>
+
+          <button id="analyze-btn">Analyze Tasks</button>
+
+          <div id="status" class="status"></div>
+
+          <h3>Current Task List (for Analyze)</h3>
+          <pre id="task-preview" class="preview"></pre>
+        </section>
+
+        <!-- Output Section -->
+        <section class="panel">
+          <h2>Results</h2>
+          <div id="results"></div>
+        </section>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
